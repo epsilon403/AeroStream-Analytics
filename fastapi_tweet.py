@@ -105,3 +105,4 @@ def get_microbatch(batch_size: int = 10):
         batch_size = min(max(batch_size, 1), 100)  
     return [generate_tweet() for _ in range(batch_size)]
 
+
