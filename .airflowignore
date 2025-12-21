@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+chromadb/
+*.pyc
+*.pyo
+*.csv
+*.pkl
+*.ipynb
+.git/
+.vscode/

@@ -1,10 +1,10 @@
 from airflow import DAG
 from datetime import datetime
-from airflow.operators.python import PythonOperator
+from airflow.providers.standard.operators.python import PythonOperator
 import requests
 import json
 
-API_URL = "http://127.0.0.1:8000"
+API_URL = "http://127.0.0.1:8001"
 
 def generate_tweets(**context):
     """Task 1: Generate fake tweets from /batch endpoint"""
@@ -49,33 +49,36 @@ def insert_to_db(**context):
 with DAG(
     'twitter_sentiment_pipeline',
     start_date=datetime(2023, 1, 1),
-    schedule_interval=None,
+    schedule='*/2 * * * *',  
     catchup=False,
-    description='Generate tweets → Clean → Predict → Insert to DB'
+    description='Generate tweets → Clean → Predict → Insert to DB',
+    tags=['twitter', 'sentiment_analysis'],
 ) as dag:
     
     task_1 = PythonOperator(
         task_id='generate_tweets',
         python_callable=generate_tweets,
-        provide_context=True
+        
     )
     
     task_2 = PythonOperator(
         task_id='clean_tweets',
         python_callable=clean_tweets,
-        provide_context=True
+        
     )
     
     task_3 = PythonOperator(
         task_id='predict_sentiment',
         python_callable=predict_sentiment,
-        provide_context=True
+        
     )
     
     task_4 = PythonOperator(
         task_id='insert_to_db',
         python_callable=insert_to_db,
-        provide_context=True
+        
     )
     
     task_1 >> task_2 >> task_3 >> task_4
+
+#Ashf6kdDBQbX2bqr
