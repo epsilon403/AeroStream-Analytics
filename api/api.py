@@ -9,7 +9,7 @@ app.title = "Airline Sentiment Analysis API"
 embedding_model = SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2', local_files_only=True)
 
 
-classifier = joblib.load('best_airline_sentiment_model.pkl')
+classifier = joblib.load('../models/best_airline_sentiment_model.pkl')
 
 @app.post("/predict/")
 def predict_sentiment(text: str) -> Union[str, None]:

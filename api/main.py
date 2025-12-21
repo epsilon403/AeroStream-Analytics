@@ -2,8 +2,8 @@ from fastapi import FastAPI
 
 app = FastAPI(title="Airline Sentiment Analysis - Complete API", version="1.0")
 
-from api import predict_sentiment, read_root as api_root, embedding_model, classifier
-from fastapi_tweet import get_microbatch
+from api.api import predict_sentiment, read_root as api_root, embedding_model, classifier
+from api.fastapi_tweet import get_microbatch
 
 @app.get("/")
 def read_root():

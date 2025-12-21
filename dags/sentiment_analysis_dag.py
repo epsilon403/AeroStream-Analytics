@@ -15,7 +15,7 @@ def generate_tweets(**context):
 
 def clean_tweets(**context):
     """Task 2: Clean the generated tweets"""
-    from clean_data import clean_tweets as clean_func
+    from data.clean_data import clean_tweets as clean_func
     return clean_func(**context)
 
 def predict_sentiment(**context):
@@ -38,7 +38,7 @@ def predict_sentiment(**context):
 
 def insert_to_db(**context):
     """Task 4: Insert predictions to database"""
-    from insert import insert_batch_to_db
+    from scripts.insert import insert_batch_to_db
     ti = context['ti']
     predictions = ti.xcom_pull(task_ids='predict_sentiment')
     
