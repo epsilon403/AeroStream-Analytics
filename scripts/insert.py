@@ -10,7 +10,7 @@ engine = create_engine(DATABASE_URL, echo=False)
 SessionLocal = sessionmaker(bind=engine)
 Base = declarative_base()
 
-API_BASE_URL = "http://localhost:8002"
+API_BASE_URL = "http://localhost:8001"
 BATCH_ENDPOINT = f"{API_BASE_URL}/batch"
 
 class TweetDB(Base):
